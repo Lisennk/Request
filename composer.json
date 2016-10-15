@@ -1,0 +1,21 @@
+{
+    "name": "lisennk/request",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "serewann",
+            "email": "serewann@gmail.com"
+        }
+    ],
+    "require": {
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.5.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lisennk\\Request\\": "src/",
+            "Lisennk\\Request\\Tests\\": "tests/"
+        }
+    }
+}
