@@ -1,11 +1,15 @@
 # :alien: Request
+[![Latest Stable Version](https://poser.pugx.org/lisennk/request/v/stable)](https://packagist.org/packages/lisennk/request)
+[![License](https://poser.pugx.org/lisennk/laravel-slack-events-api/license)](https://packagist.org/packages/lisennk/request)
+[![Build Status](https://travis-ci.org/Lisennk/Slack-Events.svg?branch=1.0.0)](https://travis-ci.org/Lisennk/Request)
+
 *One Request Class To Rule Them All.*
 
 **Lisennk\Request** allow to get data both from HTTP requests (e.g. `$_POST`, `$_GET`) and CLI without changing code. For exmaple, you have a script `love.php`. You can open it in your browser (e.g. `http://localhost/love.php?name=Alice`) or run via console (`php love.php --name="Alice"`) — with **Lisennk\Request** you can read passed data, both `?name=Alice` and `--name="Alice"` in the same way, just like this:
 ```php
 echo Request::input('name'); // outputs "Alice"
 ```
-## :new_moon_with_face: Possibilities
+## :new_moon_with_face: Possibilities and usage
 Following the example above, we can also:
 ```php
 <?php
@@ -41,3 +45,12 @@ You can use `notEmpty` method to check if there is any data passed to the script
 ```php
 if ($request->notEmpty()) echo 'There is something to work with!';
 ```
+## :squirrel: Installation
+You can install it with Composer:
+```bash
+composer require lisennk/request
+```
+
+## :last_quarter_moon_with_face: Contributions 
+
+Feel free create issues and pull requests. Please, star repository, if you like it. 
