@@ -2,46 +2,52 @@
 
 namespace Lisennk\Request;
 
+use Lisennk\Request\Interfaces\RequestInterface;
+use Lisennk\Request\Requests\CliRequest;
+use Lisennk\Request\Requests\HttpRequest;
+
 /**
- * Class Request provides single way to access data passed both via HTTP/CLI
- *
+ * Class Request
  * @package Lisennk\Request
  */
-class Request
+class Request implements RequestInterface
 {
     /**
-     * CLI options cache
-     *
-     * @var array
+     * @var RequestInterface
      */
-    private $cliOptions = [];
+    public $provider;
 
     /**
-     * Returns HTTP/CLI request value associated with $key
+     * Request constructor.
+     */
+    public function __construct()
+    {
+        $cli = new CliRequest();
+        $http = new HttpRequest();
+        $this->provider = $http->notEmpty() ? $http : $cli;
+    }
+
+    /**
+     * Returns request data by its $key
      *
      * @param $key
      * @return mixed
      */
     public function __get($key)
     {
-        return isset($_REQUEST[$key]) ? $_REQUEST[$key] : $this->getCliOption($key);
+        return $this->provider->input($key);
     }
 
     /**
-     * Returns HTTP/CLI request value associated with $key,
-     * or $placeholder if key does not exists
+     * Returns data by its key or $default if not found
      *
      * @param $key
-     * @param mixed $placeholder
-     * @return mixed|bool
+     * @param $default
+     * @return mixed
      */
-    public function input($key, $placeholder = false)
+    public function input($key, $default)
     {
-        if ($this->has($key)) {
-            return $this->__get($key);
-        } else {
-            return $placeholder;
-        }
+        return $this->provider->input($key, $default);
     }
 
     /**
@@ -52,33 +58,16 @@ class Request
      */
     public function has($key)
     {
-        return $this->__get($key) ? true : false;
+        return $this->provider->has($key);
     }
 
     /**
-     * False if $key exists, true if not.
-     * Inversion of has() method.
+     * True if there is any data
      *
-     * @param $key
      * @return bool
      */
-    public function hasnt($key)
+    public function notEmpty()
     {
-        return $this->has($key) ? false : true;
-    }
-
-    /**
-     * Returns CLI request value associated with $key
-     *
-     * @see http://php.net/manual/en/function.getopt.php
-     * @param $key
-     * @return mixed
-     */
-    private function getCliOption($key)
-    {
-        if (empty($this->cliOptions[$key])) {
-            $this->cliOptions[$key] = getopt('', [$key . ':'])[$key];
-        }
-        return $this->cliOptions[$key];
+        return $this->provider->notEmpty();
     }
 }
