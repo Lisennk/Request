@@ -36,12 +36,18 @@ class HttpRequest implements RequestInterface
 
     /**
      * True if $key exists, false if not
+     * If $value passed, returns true if $key's value are the same as $value
      *
      * @param $key
+     * @param $value
      * @return bool
      */
-    public function has($key)
+    public function has($key, $value = null)
     {
+        if ($value) {
+            return $this->input($key) == $value ? true : false;
+        }
+
         return $this->input($key) ? true : false;
     }
 

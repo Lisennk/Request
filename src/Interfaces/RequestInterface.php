@@ -8,7 +8,7 @@ namespace Lisennk\Request\Interfaces;
  */
 interface RequestInterface
 {
-    public function input($key, $placeholder);
-    public function has($key);
+    public function input($key, $default = null);
+    public function has($key, $value = null);
     public function notEmpty();
 }

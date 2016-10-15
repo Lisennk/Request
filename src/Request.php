@@ -30,4 +30,42 @@ class Request
 
         return self::$provider;
     }
+
+    /**
+     * Returns request value by its key
+     *
+     * @param $key
+     * @return mixed
+     */
+    public function __get($key)
+    {
+        $request = self::instance();
+        return $request->input($key);
+    }
+
+    /**
+     * Static interface to access request methods such as input or has
+     *
+     * @param $name
+     * @param $arguments
+     * @return mixed
+     */
+    static public function __callStatic($name, $arguments)
+    {
+        $request = self::instance();
+        return $request->$name(...$arguments);
+    }
+
+    /**
+     * Interface to access request methods such as input or has
+     *
+     * @param $name
+     * @param $arguments
+     * @return mixed
+     */
+    public function __call($name, $arguments)
+    {
+        $request = self::instance();
+        return $request->$name(...$arguments);
+    }
 }

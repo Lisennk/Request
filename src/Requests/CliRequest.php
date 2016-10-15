@@ -19,7 +19,7 @@ class CliRequest implements RequestInterface
      * @param mixed $placeholder
      * @return mixed
      */
-    public function input($key, $placeholder = null)
+    public function input($key, $default = null)
     {
         if (empty($this->input[$key])) $this->input[$key] = getopt('', [$key . ':'])[$key];
         return $this->input[$key] ? $this->input[$key] : $placeholder;
@@ -27,12 +27,18 @@ class CliRequest implements RequestInterface
 
     /**
      * True if $key exists, false if not
+     * If $value passed, returns true if $key's value are the same as $value
      *
      * @param $key
+     * @param $value
      * @return bool
      */
-    public function has($key)
+    public function has($key, $value = null)
     {
+        if ($value) {
+            return $this->input($key) == $value ? true : false;
+        }
+
         return $this->input($key) ? true : false;
     }
 
