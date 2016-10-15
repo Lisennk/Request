@@ -39,7 +39,7 @@ if (Request::has('name')) echo 'Name passed!'; // outputs "Name passed!" if ther
 You can use second parameter of "has" method to check if value exist and that its equal to needed
 ```php
 if ($request->has('name', 'Alice')) echo 'The name is Alice!'; // outputs "the name is Alice"
-if ($request->has('name', 'Bob')) echo 'Bob is here!'; // we know that name is "Alice", not "Bob", so here we will not get any output
+if (Request::has('name', 'Bob')) echo 'Bob is here!'; // we know that name is "Alice", not "Bob", so here we will not get any output
 ```
 You can use `notEmpty` method to check if there is any data passed to the script
 ```php
