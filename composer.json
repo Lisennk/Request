@@ -1,5 +1,7 @@
 {
     "name": "lisennk/request",
+    "description": "Allow to get data both from HTTP requests (e.g. $_POST, $_GET) and CLI without changing code",
+    "keywords": ["request", "cli", "http", "get", "post", "getopts", "argv"],
     "license": "MIT",
     "authors": [
         {
