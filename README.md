@@ -30,7 +30,7 @@ echo Request::input('name'); // outputs "Alice"
 You can use placeholder (i.e. default value) that will be returned if input doesnt exist:
 ```php
 echo Request::input('name', 'Unknown Name'); // outputs "Unknown Name" if "name" doesnt passed
-echo $request->input('name', 'Unknow Name'); // the same same, outputs "Unknown Name" if "name" doesnt passed
+echo $request->input('name', 'Unknown Name'); // the same same, outputs "Unknown Name" if "name" doesnt passed
 ```
 You can use `has` method to check if value exist:
 ```php
@@ -53,4 +53,4 @@ composer require lisennk/request
 
 ## :last_quarter_moon_with_face: Contributions 
 
-Feel free create issues and pull requests. Please, star repository, if you like it. 
+Feel free to create issues and pull requests. Please, star repository, if you like it. 
