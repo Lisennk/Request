@@ -30,7 +30,7 @@ echo Request::input('name'); // outputs "Alice"
 You can use placeholder (i.e. default value) that will be returned if input doesnt exist:
 ```php
 echo Request::input('name', 'Unknown Name'); // outputs "Unknown Name" if "name" doesnt passed
-echo $request->input('name, 'Unknow Name'); // the same same, outputs "Unknown Name" if "name" doesnt passed
+echo $request->input('name', 'Unknow Name'); // the same same, outputs "Unknown Name" if "name" doesnt passed
 ```
 You can use `has` method to check if value exist:
 ```php
